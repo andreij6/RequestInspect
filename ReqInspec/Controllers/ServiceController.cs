@@ -7,8 +7,13 @@ using System.Web.Http;
 
 namespace ReqInspec.Controllers
 {
+    [AllowAnonymous]
+    [RoutePrefix("test")]
     public class ServiceController : ApiController
     {
+        
+        [Route("VerifyAddress")]
+        [HttpPost]
         public string VerifyAddress()
         {
             string result =
