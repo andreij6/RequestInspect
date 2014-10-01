@@ -15,10 +15,10 @@ namespace ReqInspec.Controllers
         
         [Route("VerifyAddress")]
         [HttpPost]
-        public string VerifyAddress()
+        public HttpResponseMessage VerifyAddress()
         {
             string result =
-                        @"<?xml version="1.0" encoding="utf-8"?>" +
+                        @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                             @"<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">" +
                                 "<soapenv:Body>" +
                                 @"<notificationsResponse xmlns=""http://soap.sforce.com/2005/09/outbound"">" +
@@ -37,7 +37,7 @@ namespace ReqInspec.Controllers
             XmlDocument response = new XmlDocument();
             response.LoadXml(result);
 
-            return response.OuterXml;
+            return new HttpResponseMessage() { Content = new StringContent(response.OuterXml) };
         }
     }
 }
